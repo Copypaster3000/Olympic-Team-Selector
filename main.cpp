@@ -12,6 +12,25 @@
 
 int main()
 {
+	/*
+	skater skater1;
+
+	skater1.input_info();
+
+	cout << skater1 << endl;
+
+	sprinter sprinter1;
+
+	sprinter1.input_info();
+
+	cout << sprinter1 << endl;
+	*/
+
+	archer archer1;
+
+	archer1.input_info();
+
+	cout << archer1 << endl;
 
 
 

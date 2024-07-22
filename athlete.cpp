@@ -54,6 +54,12 @@ athlete & athlete::operator = (const athlete & og_athlete)
 //addition assignment operator
 athlete & athlete::operator += (int medal)
 {
+	if(medal < 1 || medal > 3)
+	{
+		bad_input error;
+		throw error;
+	}
+
 	medals.push_back(medal); //Adds medal to back of list of medals
 
 	return *this;
@@ -64,6 +70,12 @@ athlete & athlete::operator += (int medal)
 //addition operator (friend)
 athlete operator + (const athlete & op1, int medal)
 {
+	if(medal < 1 || medal > 3)
+	{
+		bad_input error;
+		throw error;
+	}
+
 	athlete temp = op1; //Create temp athlete object and set it to athlete obj passed in
 
 	temp += medal; //Add medal to athlete's list of medals using previously overloaded += operand
@@ -76,6 +88,12 @@ athlete operator + (const athlete & op1, int medal)
 //addition operator (friend)
 athlete operator + (int medal, const athlete & op2)
 {
+	if(medal < 1 || medal > 3)
+	{
+		bad_input error;
+		throw error;
+	}
+
 	athlete temp = op2; //Create temp athlete object and set it to athlete obj passed in
 
 	temp += medal; //Add medal to athlete's list of medals using previously overloaded += operand
@@ -85,7 +103,7 @@ athlete operator + (int medal, const athlete & op2)
 
 
 
-// >> operator
+// >> operator, sets athletes name dynamically
 istream & operator>>(istream & in, athlete & op2)
 {
 	string temp; //String to emporarily hold input
@@ -118,7 +136,7 @@ ostream & operator << (ostream & out, const athlete & op2)
 	}
 
 	//Outputs athlete details
-	out << "Athlete: " << op2.name << "\tSport: " << op2.sport << "\tThis seasons medals: ";
+	out << "Athlete: " << op2.name << "   Sport: " << op2.sport << "   This season's medals: ";
 
 	for (auto it = op2.medals.begin(); it != op2.medals.end(); ++it) //Iterate through each medal in medals list
 	{
@@ -127,17 +145,13 @@ ostream & operator << (ostream & out, const athlete & op2)
 		out << *it; //Displays medal at current element
 	}
 
-
 	return out; //Returns ostream operand
 }
 
 
 
-//equality operator, checks if the athlete's rank scores are the same
-
-
 //Returns medals ranking score
-float athlete::calc_medals_score(float weight)
+float athlete::calc_medals_score(float weight) const
 {
 	float score = 0; //holds score to be returned
 
@@ -151,6 +165,98 @@ float athlete::calc_medals_score(float weight)
 
 	return score; //returns score
 }
+
+
+
+//Sets athlete's stats from user input
+void athlete::input_athlete_stats(string sp)
+{
+	int entering = 0;
+
+	if(name || !sport.empty()) //If the athlete's name or sport are already set
+	{
+		over_write error;
+		throw error;
+	}
+
+	sport = sp; //Set athlete's sport with sport passed in
+
+	cout << "\nEnter the athlete's name: ";
+	cin >> *this; //Set's althlete's name using this objects overloaded >> operator 
+	cout << "You enterd: " << name << endl;
+
+	cout << "\nWould you like to enter any medals the athlete won this season?";
+	entering = yes_or_no();
+
+	while(entering)
+	{
+		*this += medal_from_user(); //Gets medal from user an adds it to medals list using overloaded += operator
+
+		cout << "\nWould you like to enter another medal the athlete won this season?";
+		entering = yes_or_no();
+	}
+
+	return;
+};
+
+
+
+//Get's yes or no from user, 1 for yes 0 for no
+int athlete::yes_or_no(void)
+{
+	int answer = 0;
+
+	cout << "\nEnter you answer as an integer. \n1) yes\n2) no\nEnter: ";
+	cin >> answer;
+
+	while(answer != 1 && answer != 2)
+	{
+		//Clear input stream
+		cin.clear();
+		cin.ignore(100, '\n');
+
+		cout << "Invalid entry. Enter your answer as an integer.\n1) yes\n2) no\nEnter: ";
+		cin >> answer;
+	}
+
+	if (answer == 1) return 1;
+
+	return 0;
+}
+
+
+
+//Returns user's medal entery
+int athlete::medal_from_user(void)
+{
+	int medal = 0;
+	cout << "\nEnter the athlete's medal as an integer, 1 for gold, etc..\nEnter: ";
+	cin >> medal;
+
+	while(medal != 1 && medal != 2 && medal != 3)
+	{
+		//Clear input stream
+		cin.clear();
+		cin.ignore(100, '\n');
+		
+		cout << "Invalid entry. Enter 1, 2, or 3.\nEnter: ";
+		cin >> medal;
+	}
+
+	return medal;
+}
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

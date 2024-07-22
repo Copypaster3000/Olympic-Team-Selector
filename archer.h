@@ -15,11 +15,9 @@ class archer : public athlete
 	public:
 		archer(); //default constructor
 		~archer(); //destructor
-				   
-		archer(const archer & obj); //copy constructor					
-		archer & operator = (const archer & obj); //assignment operator
 
-		friend ostream & operator << (ostream & out, const archer & op2); //Used to output all of the archer's info
+		//Displays all archer's info, throws no data error if members are missing data
+		friend ostream & operator << (ostream & out, const archer & op2); 
 
 		//All of the relational and equality operators will
         //be used to compare the rank scores of archers
@@ -30,7 +28,7 @@ class archer : public athlete
         friend bool operator <= (const archer &, const archer &);
         friend bool operator < (const archer &, const archer &);		
 
-		int calc_rank_score(void); //calculates and returns archer's score based on stats which is used for ranking
+		int calc_rank_score(void) const; //calculates and returns archer's score based on stats which is used for ranking
 		void input_info(void); //Sets all skater's info from user input, throw error if any info is overwritten
 
 

@@ -25,29 +25,18 @@ class athlete
 		athlete(const athlete & obj); //copy constructor				  
 		athlete & operator = (const athlete & obj); //assignment operator, sets this object with deep copy of object set to				
 												  
-		athlete & operator += (int medal_placement); //addition assignment opperator, add's medal placement to athlete's medals list
+		//addition assignment opperator, add's medal placement to athlete's medals list
+		athlete & operator += (int medal_placement); //throws bad data error if user inputs medal that is not 1, 2, or 3
 		friend athlete operator + (const athlete & obj, int medal_placement); //addition opperator, this function will be used to add a medal to the skater's list of
-		friend athlete operator + (int medal_placement, const athlete & obj); //medals, would be used like skater_obj = skater_obj + medal_placement;
+		friend athlete operator + (int medal_placement, const athlete & obj); //medals, would be used like skater_obj = skater_obj + medal_placement; throws same error as += operator
 
-		friend istream & operator >> (istream & in, athlete & op2); //Used to input the athlete's name
-		friend ostream & operator << (ostream & out, const athlete & op2); //Used to output all of the athletes info
-
-		//All of the relational and equality operator will be 
-		//used to compare the rank scores of athletes
-		/* THINKING I WOULD NOT DEFINE THESE HERE BECAUSE THE RANK SCORE WHICH IS BEING COMPARED IS DEPENDANT ON THE 
-		 * MEDAL WEIGHT WHICH IS DEPENDANT ON THE ATHLETE TYPE, SO IT WILL BE PASSED IN TO CALC MEDAL SCORE WHICH WILL
-		 * BE CALLED IN EACH ATHLETE TYPE'S EQUALITY AND RELATIONAL OVERLOADED OPERTOR DEFINITIONS
-        friend bool operator == (const athlete &, const athlete &);
-        friend bool operator != (const athlete &, const athlete &);
-        friend bool operator >= (const athlete &, const athlete &);
-        friend bool operator > (const athlete &, const athlete &);
-        friend bool operator <= (const athlete &, const athlete &);
-        friend bool operator < (const athlete &, const athlete &);		
-		*/
+		friend istream & operator >> (istream & in, athlete & op2); //Used to input the athlete's name, throws over_write error if athlete already has a name
+		friend ostream & operator << (ostream & out, const athlete & op2); //Used to output all of the athletes info, throws no data error if name or sport is null/empty
 																	   
-		int input_athlete_stats(void); //Gets user input to set name, sports, and medals
-		float calc_medals_score(float weight); //Returns the ranking score for the athlete's medals, pass in the weighting for the medals based on athlete's sport
-
+		float calc_medals_score(float weight) const; //Returns the ranking score for the athlete's medals, pass in the weighting for the medals based on athlete's sport
+		void input_athlete_stats(string sp); //Gets user input to set name and medals, pass in sport type, throws over write error if any data is overwritten
+		int yes_or_no(void); //Gets a yes or no answer from the user, returns 1 for yes, 0 for no
+		int medal_from_user(void); //Gets medal placement from user, returns 1 for gold, etc..
 
 	protected:
 		char* name; //athlete's name

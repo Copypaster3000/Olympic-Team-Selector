@@ -16,14 +16,12 @@ class sprinter : public athlete
 	public:
 		sprinter(); //default constructor
 		~sprinter(); //destructor
-					 
-		sprinter(const sprinter & obj); //copy constructor
-		sprinter & operator = (const sprinter & obj); //assignment operator
-
-		friend ostream & operator << (ostream & out, const sprinter & op2); //Used to output all of sprinter info
+		//used to output all sprinter info, throws no data error if data members have no bet set yet
+		friend ostream & operator << (ostream & out, const sprinter & op2); 
 
 		//All of the relational and equality operators will
         //be used to compare the rank scores of athlets
+		//Throws missing score error if a score used to calc the rank score has not been entered
         friend bool operator == (const sprinter &, const sprinter &);
         friend bool operator != (const sprinter &, const sprinter &);
         friend bool operator >= (const sprinter &, const sprinter &);
@@ -31,12 +29,12 @@ class sprinter : public athlete
         friend bool operator <= (const sprinter &, const sprinter &);
         friend bool operator < (const sprinter &, const sprinter &);		
 
-		int calc_rank_score(void); //calculates and returns sprinter's score based on stats, which is used for ranking
+		float calc_rank_score(void) const; //calculates and returns sprinter's score based on stats, which is used for ranking
 		void input_info(void); //Sets all skater's info from user input, throw error if any info is overwritten
 
 	private:
-		int fastest_time; //Fastest 100_m sprint time recorded
-		int average_time; //average 100_m sprint time over this season
+		float fastest_time; //Fastest 100_m sprint time recorded
+		float average_time; //average 100_m sprint time over this season
 						  //Note: sprinters are ranked based on their fastest time and average time being added together
 
 

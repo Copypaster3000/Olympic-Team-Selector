@@ -18,6 +18,18 @@ struct over_write
 
 struct no_data
 {
-	string detail = "There is no data in a varibale that was accessed.";
+	string detail = "There is no data in a variable that was accessed.";
+};
+
+
+struct missing_score
+{
+	string detail = "When calulating the rank score for an athlete there were no entries in a variable that should have scores.";
+};
+
+
+struct bad_input
+{
+	string detail = "Bad input was gotten from the user.";
 };
 
