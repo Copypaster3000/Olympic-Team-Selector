@@ -26,11 +26,8 @@ class skater : public athlete
 		//used to output all of the skater's info, throws no data error if there is no data in a variable that is accessed
 		friend ostream & operator << (ostream & out, const skater & op2);
 
-		//All of the relational and equality operators will be
-		//used to compare the rank scores of skater
+		//All of the relational operators will be used to compare the rank scores of skater
 		//Throws missing score error is there is an error comparing rank scores
-        friend bool operator == (const skater &, const skater &);
-        friend bool operator != (const skater &, const skater &);
         friend bool operator >= (const skater &, const skater &);
         friend bool operator > (const skater &, const skater &);
         friend bool operator <= (const skater &, const skater &);

@@ -6,6 +6,7 @@
 //7/16/2024
 
 #include "athlete.h"
+using namespace std;
 
 
 //default constructor
@@ -47,6 +48,38 @@ athlete & athlete::operator = (const athlete & og_athlete)
 	medals = og_athlete.medals; //sets medals vector
 
 	return *this;
+}
+
+
+
+//equality operator, compares string to name
+bool operator == (const athlete & op1, const string & op2)
+{
+	return(strcmp(op1.name, op2.c_str())) == 0;
+}
+
+
+
+//equality operator, compares string to name
+bool operator == (const string & op1, const athlete & op2)
+{
+	return(strcmp(op1.c_str(), op2.name)) == 0;
+}
+
+
+
+//inequality operator, compares string to name
+bool operator != (const athlete & op1, const string & op2)
+{
+	return(strcmp(op1.name, op2.c_str())) != 0;
+}
+
+
+
+//inequality operator, compares string to name
+bool operator != (const string & op1, const athlete & op2)
+{
+	return(strcmp(op1.c_str(), op2.name)) != 0;
 }
 
 
@@ -157,10 +190,17 @@ float athlete::calc_medals_score(float weight) const
 
 	for(const int & medal : medals) //Loops through each medal in medals
 	{
-		//Adds points to score, more points for higher placement
-		if(medal == 1) score += 3 * weight;
-		else if(medal == 2) score += 2 * weight;
-		else if (medal == 3) score += 1 * weight;
+		try
+		{
+			//Adds points to score, more points for higher placement
+			if(medal == 1) score += 3 * weight;
+			else if(medal == 2) score += 2 * weight;
+			else if (medal == 3) score += 1 * weight;
+		}
+		catch (const bad_input & error)
+		{
+			cout << error.detail << endl;
+		}
 	}
 
 	return score; //returns score
@@ -248,7 +288,13 @@ int athlete::medal_from_user(void)
 
 
 
+//Checks if athlete's name is empty
+int athlete::empty(void)
+{
+	if(!name) return 1;
 
+	return 0;
+}
 
 
 

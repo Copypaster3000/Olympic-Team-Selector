@@ -19,10 +19,8 @@ class archer : public athlete
 		//Displays all archer's info, throws no data error if members are missing data
 		friend ostream & operator << (ostream & out, const archer & op2); 
 
-		//All of the relational and equality operators will
-        //be used to compare the rank scores of archers
-        friend bool operator == (const archer &, const archer &);
-        friend bool operator != (const archer &, const archer &);
+		//All of the relational operators are used to compare the rank scores of archers
+		//Throws missing score error if a score used to calc the rank score has not been entered
         friend bool operator >= (const archer &, const archer &);
         friend bool operator > (const archer &, const archer &);
         friend bool operator <= (const archer &, const archer &);

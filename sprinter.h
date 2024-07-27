@@ -19,11 +19,8 @@ class sprinter : public athlete
 		//used to output all sprinter info, throws no data error if data members have no bet set yet
 		friend ostream & operator << (ostream & out, const sprinter & op2); 
 
-		//All of the relational and equality operators will
-        //be used to compare the rank scores of athlets
+		//All of the relational are used to compare the rank scores of athlets
 		//Throws missing score error if a score used to calc the rank score has not been entered
-        friend bool operator == (const sprinter &, const sprinter &);
-        friend bool operator != (const sprinter &, const sprinter &);
         friend bool operator >= (const sprinter &, const sprinter &);
         friend bool operator > (const sprinter &, const sprinter &);
         friend bool operator <= (const sprinter &, const sprinter &);

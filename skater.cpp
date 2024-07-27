@@ -6,6 +6,7 @@
 //7/16/2024
 
 #include "skater.h"
+using namespace std;
 
 
 //default constructor
@@ -85,30 +86,6 @@ ostream & operator << (ostream & out, const skater & op2)
 	}
 
 	return out;
-}
-
-
-
-//equality operator
-bool operator == (const skater & op1, const skater & op2)
-{
-	//compares rank scores of skaters
-	//Throws missing score ERROR if there is an error with calc_rank_score
-	if(op1.calc_rank_score() == op2.calc_rank_score()) return true;
-
-	return false;
-}
-
-
-
-//inequality operator
-bool operator != (const skater & op1, const skater & op2)
-{
-	//compares rank scores of skaters
-	//Throws missing score ERROR if there is an error with calc_rank_score
-	if(op1.calc_rank_score() != op2.calc_rank_score()) return true;
-
-	return false;
 }
 
 

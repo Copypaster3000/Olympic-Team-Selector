@@ -5,33 +5,37 @@
 //Karla Fant
 //7/18/2024
 
-#include "skater.h"
-#include "sprinter.h"
-#include "archer.h"
-
+#include "leader_board.h"
 
 int main()
 {
-	/*
-	skater skater1;
+	int menu_choice {}; //Holds user's menu selection
+	leader_board app; //Leader_board object to run application
 
-	skater1.input_info();
+	app.intro(); //Explains program to user
 
-	cout << skater1 << endl;
+	while(menu_choice != 4) //While user has not selected to end program
+	{
+		menu_choice = app.menu(); //Get main menu choice from 
 
-	sprinter sprinter1;
+		if(menu_choice == 1)
+		{
+			menu_choice = app.sub_menu1(); //Sets menu choice with what sport user want to add an athlete to
 
-	sprinter1.input_info();
+			app.add_athlete(menu_choice); //Adds athlete to correct sport based on int passed in
+		}
+		else if(menu_choice == 2)
+		{
+			menu_choice = app.sub_menu2(); //Sets menu choice to what sport the user wants to remove an athlete from
+			app.remove_athlete(menu_choice); //Removes athlete named by use from list
+		}
+		else if(menu_choice == 3)
+		{
+			menu_choice = app.sub_menu3(); //Sets meny choice to waht sport the user wants to display
+			app.display_ranks(menu_choice); //Displays ranked list of athletes of sport user chose
+		}
 
-	cout << sprinter1 << endl;
-	*/
-
-	archer archer1;
-
-	archer1.input_info();
-
-	cout << archer1 << endl;
-
+	}
 
 
 	return 0;

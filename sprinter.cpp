@@ -6,6 +6,7 @@
 //7/16/2024
 
 #include "sprinter.h"
+using namespace std;
 
 
 //constructor
@@ -32,30 +33,6 @@ ostream & operator << (ostream & out, const sprinter & op2)
 	out << static_cast<const athlete &> (op2) << "   Fastest 100m time: " << op2.fastest_time << "   Average 100m time: " << op2.average_time;
 
 	return out;
-}
-
-
-
-//equality operator
-bool operator == (const sprinter & op1, const sprinter & op2)
-{
-	//compares rank scores of sprinters
-	//Throws missing score ERROR if there is an error with calc_rank_score
-	if(op1.calc_rank_score() == op2.calc_rank_score()) return true;
-
-	return false;
-}
-
-
-
-//inequality operator
-bool operator != (const sprinter & op1, const sprinter & op2)
-{
-	//compares rank scores of sprinters
-	//Throws missing score ERROR if there is an error with calc_rank_score
-	if(op1.calc_rank_score() != op2.calc_rank_score()) return true;
-
-	return false;
 }
 
 

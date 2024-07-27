@@ -6,6 +6,7 @@
 //7/16/2024
 
 #include "archer.h"
+using namespace std;
 
 
 //constructor
@@ -34,30 +35,6 @@ ostream & operator << (ostream & out, const archer & op2)
 	out << static_cast<const athlete &> (op2) << "   Match one score: " << op2.match1_score << "   Match two score: " << op2.match2_score << "   Match three score: " << op2.match3_score;
 
 	return out;
-}
-
-
-
-//equality operator
-bool operator == (const archer & op1, const archer & op2)
-{
-	//compares rank scores of archers
-	//Throws missing score ERROR if there is an error with calc_rank_score
-	if(op1.calc_rank_score() == op2.calc_rank_score()) return true;
-
-	return false;
-}
-
-
-
-//inequality operator
-bool operator != (const archer & op1, const archer & op2)
-{
-	//compares rank scores of archers
-	//Throws missing score ERROR if there is an error with calc_rank_score
-	if(op1.calc_rank_score() != op2.calc_rank_score()) return true;
-
-	return false;
 }
 
 

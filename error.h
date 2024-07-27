@@ -6,9 +6,17 @@
 //7/18/2024
 //This file holds the structs which will be thrown as errors
 
+#ifndef ERROR_H
+#define ERROR_H
+
 #include <iostream>
 using namespace std;
 
+
+struct not_connected
+{
+	string detail = "A node is not properly connected in the dll.";
+};
 
 struct over_write
 {
@@ -33,3 +41,4 @@ struct bad_input
 	string detail = "Bad input was gotten from the user.";
 };
 
+#endif // ERROR_H
