@@ -4,6 +4,7 @@
 //Program 2
 //Karla Fant
 //7/18/2024
+//This file holds the main function. Here the entire program is organized on the highest level. 
 
 #include "leader_board.h"
 
@@ -36,6 +37,8 @@ int main()
 		}
 
 	}
+
+	cout << "\nThe program has ended. Good luck at the Olympics!" << endl;
 
 
 	return 0;

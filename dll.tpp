@@ -4,6 +4,8 @@
 //Program 2
 //Karla Fant
 //7/18/2024
+//This file holds the class defintion for the dll template class. These functions user operator overloaders and pointers to 
+//add, remove, and display athletes in the dll.
 
 #ifndef DLL_TPP
 #define DLL_TPP
@@ -22,7 +24,20 @@ dll<TYPE>::dll() : head(nullptr), tail(nullptr)
 template <typename TYPE>
 dll<TYPE>::~dll()
 {
-	delete head; //Deallocates head for dll
+	delete_list(head); //deallocate dll
+}
+
+
+
+//deletes dll
+template <typename TYPE>
+void dll<TYPE>::delete_list(node<TYPE>* & head)
+{
+	if(!head) return; //Stop after reaching end of dll
+
+	delete_list(head->get_next()); //Traverse to end of dll
+
+	delete head; //On "the way back" delete nodes
 }
 
 
@@ -46,8 +61,8 @@ int dll<TYPE>::add_athlete(const TYPE & to_add)
 		node<TYPE>* new_node = new node<TYPE>; //Create new node
 
 		head = new_node; //Set head with new node
-		head->get_next() = temp; //Set new head's next ptr to old head
-		temp->get_prev() = head; //Set old head's prev ptr to new head
+		head->set_next(temp); //Set new head's next ptr to old head
+		temp->set_prev(head); //Set old head's prev ptr to new head
 
 		head->set_athlete(to_add); //Set new node with new athlete
 
@@ -68,10 +83,10 @@ int dll<TYPE>::add_athlete(node<TYPE>* & current, const TYPE & to_add)
 		node<TYPE>* new_node = new node<TYPE>; //create new node
 		node<TYPE>* temp = current->get_prev(); //Set temp pointer to prev node									 
 
-		new_node->get_next() = current; //Set new node's next ptr to current
-		new_node->get_prev() = temp; //Set new node's prev ptr to temp
-		temp->get_next() = new_node; //Set previous node's next ptr to new node
-		current->get_prev() = new_node; //Set current node's prev ptr to new node
+		new_node->set_next(current); //Set new node's next ptr to current
+		new_node->set_prev(temp); //Set new node's prev ptr to temp
+		temp->set_next(new_node); //Set previous node's next ptr to new node
+		current->set_prev(new_node); //Set current node's prev ptr to new node
 
 		new_node->set_athlete(to_add); //Set new node with new athlete's info
 
@@ -81,8 +96,8 @@ int dll<TYPE>::add_athlete(node<TYPE>* & current, const TYPE & to_add)
 	{
 		tail = new node<TYPE>; //create new node
 
-		tail->get_prev() = current; //Set new tail's prev ptr to old tail
-		current->get_next() = tail; //Set old tail's next ptr to new tail
+		tail->set_prev(current); //Set new tail's prev ptr to old tail
+		current->set_next(tail); //Set old tail's next ptr to new tail
 
 		tail->set_athlete(to_add); //Set new node with new athlete's info
 
@@ -98,7 +113,7 @@ int dll<TYPE>::add_athlete(node<TYPE>* & current, const TYPE & to_add)
 template <typename TYPE>
 int dll<TYPE>::remove_athlete(const string & to_remove)
 {
-	if(!head) return 0; //If there are no athletes in dll
+	if(!head) return 0; //No athletes to remove
 
 	if(head == tail) //If there is one node in dll
 	{
@@ -113,11 +128,12 @@ int dll<TYPE>::remove_athlete(const string & to_remove)
 		return 1; //for succesful removal
 	}
 
-	//If the ahtlete to be removed is at head and there is more than one node
+	//If the athlete to be removed is at head and there is more than one node
 	if(to_remove == head->get_athlete())
 	{
 		node<TYPE>* temp = head; //hold onto head;
 		head = head->get_next(); //Set head to new head
+		head->set_prev(nullptr);
 		delete temp; //delete old head;
 					 
 		return 1; //for succesful removal
@@ -128,12 +144,13 @@ int dll<TYPE>::remove_athlete(const string & to_remove)
 	{
 		node<TYPE>* temp = tail; //Hold onto old tail
 		tail = tail->get_prev(); //Set tail to new tail
+		tail->set_next(nullptr); //Set new tail's next ptr to null
 		delete temp; //Deletes old tail
 					 
 		return 1; //athlete was removed
 	}
 
-	//None of the special cases were hit, call recusrive removal function
+	//None of the special cases were hit, call recursive removal function
 	return remove_athlete(to_remove, head->get_next());
 }
 
@@ -143,21 +160,21 @@ int dll<TYPE>::remove_athlete(const string & to_remove)
 template <typename TYPE>
 int dll<TYPE>::remove_athlete(const string & to_remove, node<TYPE>* & current)
 {
-	//If it makes it to tail with no removal, return 0 for no athlete removed, tail already checked in wrapper
-	if(!current || current == tail) return 0;
+	if(!current || current == tail) return 0; //No match found (tail already check in wrapper
 
-	if(to_remove == current->get_athlete()) //If athlete name match
+	if(to_remove == current->get_athlete()) //If the current node is the athlete to remove
 	{
-		node<TYPE>* prev_node = current->get_prev(); //Hold onto previous node
-		node<TYPE>* next_node = current->get_next(); //Hold onto next node
-		prev_node->get_next() = next_node; //Set previous node's next ptr to one the one ahead of current
-		next_node->get_prev() = prev_node; //Set the node ahead of current previous point to the node behind current
-		delete current; //remove althete
+		node<TYPE>* to_delete = current; //Hold onto current
+		node<TYPE>* previous = current->get_prev(); //hold onto previous
+		node<TYPE>* next = current->get_next(); //hold onto next
+		previous->set_next(next); //Set previous nodes next ptr to node in front of to delete
+		next->set_prev(previous); //Ser next nodes previous ptr to node behind to delete
+		delete to_delete; //Delete removed athlete node
 
-		return 1; //Athlete was removed
+		return 1; //for succesful removal
 	}
 
-	//Recusive call, to check next node
+	//No match found call again to check next node
 	return remove_athlete(to_remove, current->get_next());
 }
 
@@ -195,16 +212,6 @@ int dll<TYPE>::display_list(node<TYPE>* current, int rank) const
 	//Next recusrive call with rank incremented
 	return display_list(current->get_next(), ++rank);
 }
-
-
-
-
-
-
-
-
-
-
 
 
 

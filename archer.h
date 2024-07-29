@@ -4,6 +4,8 @@
 //Karla Fant
 //Program 2
 //7/16/2024
+//This is the header file for the archer class. This class represents an archer athlete. This class is derived from the athlete class. It manages the archers match scores.
+//Clients can compare archer's rank scores, input the acher's stats, and display the archer's stats.
 
 #include "athlete.h"
 
@@ -26,7 +28,6 @@ class archer : public athlete
         friend bool operator <= (const archer &, const archer &);
         friend bool operator < (const archer &, const archer &);		
 
-		int calc_rank_score(void) const; //calculates and returns archer's score based on stats which is used for ranking
 		void input_info(void); //Sets all skater's info from user input, throw error if any info is overwritten
 
 
@@ -35,7 +36,9 @@ class archer : public athlete
 		int match1_score; //Match score out of 100
 		int match2_score; //score out of 100
 		int match3_score; //score out of 100
-						//Note: The archers cumulative score is used for ranking
+						  
+		int calc_rank_score(void) const; //calculates and returns archer's score based on stats which is used for ranking
+						//Note: The archers cumulative score plus their medal score used for ranking
 
 
 };

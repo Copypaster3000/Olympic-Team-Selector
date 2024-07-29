@@ -4,6 +4,8 @@
 //Karla Fant
 //Program 2
 //7/16/2024
+//This file holds the class definitions for the leader board class. These classes utalize funcitons from the other classes
+//to organize them and allow them to be tested by the user. 
 
 #include "leader_board.h"
 #include <iostream>
@@ -197,7 +199,7 @@ void leader_board::remove_athlete(int sport)
 		else //If user chose to remove an archer
 		{
 			//attempt to remove athlete from list
-			if(!archers.remove_athlete(athlete_name)) cout << "\nThere is no archer name \"" << athlete_name << "\" in the lsit." << endl;
+			if(!archers.remove_athlete(athlete_name)) cout << "\nThere is no archer named \"" << athlete_name << "\" in the list." << endl;
 			else cout << "\n" << athlete_name << " was removed from the list." << endl;
 		}
 	}

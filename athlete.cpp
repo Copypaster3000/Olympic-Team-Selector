@@ -4,6 +4,8 @@
 //Karla Fant
 //Program 2
 //7/16/2024
+//This file holds the class definitions for the athlete class. Thes functions use overloaded operators to compare the athlete's name with strings, add
+//medals to the medals list, and display the athlete stats. 
 
 #include "athlete.h"
 using namespace std;
@@ -21,15 +23,19 @@ athlete::athlete() : name(nullptr), sport("")
 athlete::~athlete()
 {
 	delete[] name; //deallocates memory
+	name = nullptr;
 }
 
 
 
 //copy constructor
-athlete::athlete(const athlete & obj) : sport(obj.sport), medals(obj.medals)
+athlete::athlete(const athlete & obj) : name(nullptr),sport(obj.sport), medals(obj.medals)
 {
-	name = new char[strlen(obj.name) + 1]; //allocates correct memory
-	strcpy(name, obj.name); //copies name
+	if(obj.name) //if athlete being copied from has a name
+	{
+		name = new char[strlen(obj.name) + 1]; //allocates correct memory
+		strcpy(name, obj.name); //copies name
+	};
 }
 
 
@@ -242,7 +248,7 @@ void athlete::input_athlete_stats(string sp)
 
 
 //Get's yes or no from user, 1 for yes 0 for no
-int athlete::yes_or_no(void)
+int athlete::yes_or_no(void) const
 {
 	int answer = 0;
 
@@ -267,7 +273,7 @@ int athlete::yes_or_no(void)
 
 
 //Returns user's medal entery
-int athlete::medal_from_user(void)
+int athlete::medal_from_user(void) const
 {
 	int medal = 0;
 	cout << "\nEnter the athlete's medal as an integer, 1 for gold, etc..\nEnter: ";
@@ -289,26 +295,12 @@ int athlete::medal_from_user(void)
 
 
 //Checks if athlete's name is empty
-int athlete::empty(void)
+int athlete::empty(void) const
 {
 	if(!name) return 1;
 
 	return 0;
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 

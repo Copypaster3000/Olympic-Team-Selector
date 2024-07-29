@@ -4,6 +4,9 @@
 //Karla Fant
 //Program 2
 //7/16/2024
+//This is the header file for the athlete class. This class is a parent class to each of the specific athlete types. This class manages the athlete name,
+//sport, and medals list. The overloaded operators allow clients to compare the athlete name with strings, output athlete details, and add medals to the
+//medals list.
 
 #ifndef ATHLETE_H
 #define ATHLETE_H
@@ -41,9 +44,10 @@ class athlete
 																	   
 		float calc_medals_score(float weight) const; //Returns the ranking score for the athlete's medals, pass in the weighting for the medals based on athlete's sport
 		void input_athlete_stats(string sp); //Gets user input to set name and medals, pass in sport type, throws over write error if any data is overwritten
-		int yes_or_no(void); //Gets a yes or no answer from the user, returns 1 for yes, 0 for no
-		int medal_from_user(void); //Gets medal placement from user, returns 1 for gold, etc..
-		int empty(void); //Returns 1 if name null, 0 if not
+											 
+		int yes_or_no(void) const; //Gets a yes or no answer from the user, returns 1 for yes, 0 for no
+		int medal_from_user(void) const; //Gets medal placement from user, returns 1 for gold, etc..
+		int empty(void) const; //Returns 1 if name null, 0 if not
 
 	protected:
 		char* name; //athlete's name

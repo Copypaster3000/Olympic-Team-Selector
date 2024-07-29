@@ -4,7 +4,7 @@
 //Karla Fant
 //Program 2
 //7/18/2024
-//This file holds the structs which will be thrown as errors
+//This is the header file for all the error structs. These structs are thrown as objects when an error is detected to be caught and learn about the issue. 
 
 #ifndef ERROR_H
 #define ERROR_H

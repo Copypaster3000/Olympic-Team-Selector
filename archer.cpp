@@ -4,6 +4,8 @@
 //Karla Fant
 //Program 2
 //7/16/2024
+//This file holds the function definitions for the archer class. These classes use operator overloading to allow the client
+//to compare rank scores of archers and to ouput archer stats. 
 
 #include "archer.h"
 using namespace std;
@@ -80,7 +82,7 @@ bool operator < (const archer & op1, const archer & op2)
 {
 	//compares rank scores of archers
 	//Throws missing score ERROR if there is an error with calc_rank_score
-	if(op1.calc_rank_score() < op1.calc_rank_score()) return true;
+	if(op1.calc_rank_score() < op2.calc_rank_score()) return true;
 
 	return false;
 }

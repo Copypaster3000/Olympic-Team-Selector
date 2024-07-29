@@ -4,6 +4,9 @@
 //Karla Fant
 //Program 2
 //7/16/2024
+//This is the header file for the skater class. This class represent a skater. It is derived from the athlete class. This class manages the skater's
+//best trick, run scores, and trick scores. The overloaded operators in this class allow clients to display all of the skater's info and compare the skater's
+//rank to other skaters. 
 
 
 
@@ -33,13 +36,14 @@ class skater : public athlete
         friend bool operator <= (const skater &, const skater &);
         friend bool operator < (const skater &, const skater &);		
 
-		float calc_rank_score(void) const; //calculates and returns skater's score based on stats which is used for ranking
 		void input_info(void); //Sets all skater's info from user input, throw error if any info is overwritten
 
 	private:
 		char* best_trick; //Holds the skaters most well known trick
 		vector<float> run_scores; //Skater's overall run scores for 2 runs at the trials
 		vector<float> trick_scores; //Skater's scores of each trick during their trials
+									
+		float calc_rank_score(void) const; //calculates and returns skater's score based on stats which is used for ranking
 									//Note: skaters are ranked based on their best 4 scores out of their runs and trick scores
 };
 

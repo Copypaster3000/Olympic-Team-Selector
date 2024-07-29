@@ -4,6 +4,9 @@
 //Program 2
 //Karla Fant
 //7/18/2024
+//This is the header file for the dll class. This is a template class which manages a doubly linked list of ranked athletes of a specific type. 
+//This class allows clients to add and remove athletes from the dll and display the athletes in the dll which are in sorted order from highest to 
+//lowest rank.
 
 
 #ifndef DLL_H
@@ -30,10 +33,9 @@ class dll
 		node<TYPE>* tail; //points to tail of dll
 
 		int add_athlete(node<TYPE>* & head, const TYPE & to_add); //Recursive part of adding athlete in sorted position to dll
-		int remove_athlete(const string & nm, node<TYPE>* & head); //Recursive part of removing athlete
+		int remove_athlete(const string & nm, node<TYPE>* & current); //Recursive part of removing athlete
 		int display_list(node<TYPE>* head, int rank) const; //Recusrive part of display all
-
-
+		void delete_list(node<TYPE>* & head); //Used in destructor to deallocate dll
 };
 
 

@@ -4,9 +4,12 @@
 //Karla Fant
 //Program 2
 //7/16/2024
+//This file holds the function definitions for the skater class. These classes define overloaded operators, use base class
+//functions, edit class data member functions and parse through data members, to edit skater stats, display them, and compare them.
 
 #include "skater.h"
 using namespace std;
+
 
 
 //default constructor
@@ -21,6 +24,7 @@ skater::skater() : athlete(), best_trick(nullptr)
 skater::~skater()
 {
 	delete[] best_trick; //deallocate memory
+	best_trick = nullptr;
 }
 
 
@@ -131,7 +135,7 @@ bool operator < (const skater & op1, const skater & op2)
 {
 	//compares rank scores of skaters
 	//Throws missing score ERROR if there is an error with calc_rank_score
-	if(op1.calc_rank_score() < op1.calc_rank_score()) return true;
+	if(op1.calc_rank_score() < op2.calc_rank_score()) return true;
 
 	return false;
 }
@@ -241,12 +245,6 @@ void skater::input_info(void)
 
 
 	
-
-
-
-		
-
-
 
 
 

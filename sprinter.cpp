@@ -4,6 +4,8 @@
 //Karla Fant
 //Program 2
 //7/16/2024
+//This file holds the function definitions for the sprinter class. These classes define overloaded operators, use base class
+//functions, edit class data member functions and parse through data members, to edit skater stats, display them, and compare them.
 
 #include "sprinter.h"
 using namespace std;
@@ -78,7 +80,7 @@ bool operator < (const sprinter & op1, const sprinter & op2)
 {
 	//compares rank scores of sprinters
 	//Throws missing score ERROR if there is an error with calc_rank_score
-	if(op1.calc_rank_score() < op1.calc_rank_score()) return true;
+	if(op1.calc_rank_score() < op2.calc_rank_score()) return true;
 
 	return false;
 }
@@ -94,8 +96,8 @@ float sprinter::calc_rank_score(void) const
 		throw error; //Throw error
 	}
 
-	//Returns fastest plus average time take away medals score, medals score is subracted because lower score is better
-	return fastest_time + average_time - calc_medals_score(0.025);
+	//Returns the medal score minues the fastest time and the average time
+	return calc_medals_score(0.025) - fastest_time - average_time;
 }
 
 
@@ -116,7 +118,7 @@ void sprinter::input_info(void)
 	//Clear input stream
 	cin.clear();
 	cin.ignore(100, '\n');
-	cout << "\nEnter the sprinter's average 100m time in seconds this season: ";
+	cout << "Enter the sprinter's average 100m time in seconds this season: ";
 	cin >> average_time;
 
 	return;
