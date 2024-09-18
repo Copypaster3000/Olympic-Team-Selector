@@ -1,5 +1,5 @@
 # Olympic Team Selector
-This C++ project allows users to select and manage their dream team for the Olympics. The team consists of athletes from three sports: Skating, 100-Meter Sprint, and Archery. Users can add, remove, and rank athletes based on their performances in the Olympic trials and medals won. The project uses templates, operator overloading, and custom data structures like doubly linked lists to efficiently manage the athlete data.
+This C++ project allows users to select and manage their dream team for the Olympics. The team consists of athletes from three sports: Skating, 100-Meter Sprint, and Archery. Users can add and remove athletes and for each sport and the program will compare and rank the athletes based on their stats. The project uses templates, operator overloading, and custom data structures like doubly linked lists to efficiently manage the athlete data.
 
 ## Features
 - Custom Doubly Linked List Template: Manages dynamic collections of athletes from different sports.
